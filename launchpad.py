@@ -11,9 +11,10 @@ import mido
 from mido import Message
 
 # we know which device we want to talk to
-portname = "Launchpad MK2"
+portname = "Launchpad MK2 1"
 
 # open it as an output port
+
 port = mido.open_output(portname)
 
 
@@ -67,3 +68,15 @@ def light_up_matrix(position_matrix, color):
 
 #light_up_column(2, 8, 12, 1)
 #print('done')
+
+
+def list_midi_out_ports():
+    # function for my reference
+    output_ports = mido.get_output_names()
+
+    print("\nMIDI Output Ports:")
+    for port in output_ports:
+        print(port)
+
+
+list_midi_out_ports()
