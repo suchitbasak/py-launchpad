@@ -42,32 +42,28 @@ def light_up_column(column, height, color, on_time):
     notes = []
     for j in range(1,height+1):
         notes.append(j*10+column)
-    print(notes)
 
     for n in notes:
         on = Message('note_on', note=n, velocity=color)
         port.send(on)
     
     time.sleep(on_time)
-    
-    everything_off()
 
 
-all_positions = np.zeros((8,8))
-for i in range(1, 9):
-    for j in range(1,9):
-        all_positions[i-1,j-1] = i*10+j
 
 # light up the board according a given 8x8 matrix
-def light_up_matrix(position_matrix, color):
+def light_up_launchpad(position_matrix, color):
+
+    all_positions = np.zeros((8,8))
+    for i in range(1, 9):
+        for j in range(1,9):
+            all_positions[i-1,j-1] = i*10+j
     notes = position_matrix * all_positions
     for i in range(8):
         for j in range(8):
             on = Message('note_on', note=int(notes[i,j]), velocity=color)
             port.send(on)
 
-#light_up_column(2, 8, 12, 1)
-#print('done')
 
 
 def list_midi_out_ports():
