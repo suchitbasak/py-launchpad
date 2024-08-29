@@ -79,4 +79,4 @@ def list_midi_out_ports():
         print(port)
 
 
-list_midi_out_ports()
+# list_midi_out_ports()
